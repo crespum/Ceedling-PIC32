@@ -1,0 +1,16 @@
+device PIC32MX250F128B
+hwtool sim
+set oscillator.frequency        8
+set oscillator.frequencyunit    Mega
+set oscillator.rcfrequency      250
+set oscillator.rcfrequencyunit  Kilo
+set uart2io.uartioenabled       true
+set uart2io.output              stdout
+#set uart2io.outputfile         test/simulation/test.txt
+
+program ./build/test/test_build.hex
+
+Run
+Sleep 1000
+
+quit

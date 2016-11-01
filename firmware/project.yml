@@ -1,0 +1,127 @@
+---
+
+# Notes:
+# Sample project C code is not presently written to produce a release artifact.
+# As such, release build options are disabled.
+# This sample, therefore, only demonstrates running a collection of unit tests.
+
+:project:
+  :use_exceptions: FALSE
+  :use_test_preprocessor: TRUE
+  :use_auxiliary_dependencies: TRUE
+  :build_root: build
+  :release_build: TRUE
+
+:release_build:
+ :output: release_build.hex
+ :use_assembly: FALSE
+
+:environment:
+  - :mcu:  32MX250F128B
+  - :freq: 80000000UL
+
+:extension:
+  :executable: .hex
+
+:paths:
+  :test:
+    - +:test/**
+    - -:test/support
+  :source:
+    - src/**
+  :support:
+    - test/support
+  :include:
+    - /opt/microchip/xc32/v1.42/pic32mx/include/
+    - /opt/microchip/harmony/v1_09/framework/
+
+:defines:
+  # in order to add common defines:
+  #  1) remove the trailing [] from the :common: section
+  #  2) add entries to the :common: section (e.g. :test: has TEST defined)
+  :commmon: &common_defines
+    - __PIC32MX__
+    - __32MX250F128B__
+    - __LANGUAGE_C__
+    - UNITY_INT_WIDTH=32
+    - CMOCK_MEM_INDEX_TYPE=uint32_t
+    - CMOCK_MEM_PTR_AS_INT=uint32_t
+    - CMOCK_MEM_ALIGN=1
+    - CMOCK_MEM_SIZE=4096    
+  :test:
+    - *common_defines
+    - TEST
+  :test_preprocess:
+    - *common_defines
+    - TEST
+  :release:
+    - *common_defines
+
+:cmock:
+  :mock_prefix: mock_
+  :when_no_prototypes: :warn
+  :enforce_strict_ordering: TRUE
+  :plugins:
+    - :ignore
+    - :callback
+  :treat_as:
+    uint8:    HEX8
+    uint16:   HEX16
+    uint32:   UINT32
+    int8:     INT8
+    bool:     UINT8
+
+:tools:
+  :test_compiler:
+    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :arguments:
+      - -mprocessor=#{ENV['MCU']}
+      - -x c
+      - -c
+      - "${1}"
+      - -o "${2}"
+      - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
+      - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
+      - -Wall
+      #- -Werror  # We can't keep this on during test becuase of a CMock pointer issue
+  :test_linker:
+    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :arguments:
+      - -mprocessor=#{ENV['MCU']}
+      - ${1}
+      - -o "./build/test/test_build.hex"
+      - -Wl,-Tp#{ENV['MCU']}.ld,-Map=./build/release/test_build.map
+  :test_fixture:
+    :executable: ruby
+    :name: "Microchip simulator test fixture"
+    :stderr_redirect: :unix # win inform Ceedling what model of $stderr capture to use
+    :arguments:
+      - test/simulation/sim_test_fixture.rb
+
+  :release_compiler:
+    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :arguments:
+      - -mprocessor=#{ENV['MCU']}
+      - -x c
+      - -c
+      - "${1}"
+      - -o "${2}"
+      - -I"$": COLLECTION_PATHS_SOURCE_INCLUDE_VENDOR
+      - -I"$": COLLECTION_PATHS_RELEASE_TOOLCHAIN_INCLUDE
+      - -D$: COLLECTION_DEFINES_RELEASE_AND_VENDOR
+      - -Wall
+      - -Werror
+  :release_linker:
+    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :arguments:
+      - -mprocessor=#{ENV['MCU']}
+      - ${1}
+      - -o "./build/test/release_build.hex"      
+      - -Wl,-Tp#{ENV['MCU']}.ld,-Map=./build/release/release_build.map,--report-mem
+:plugins:
+  :load_paths:
+    - vendor/ceedling/plugins
+  :enabled:
+    - stdout_pretty_tests_report
+    - module_generator
+...
