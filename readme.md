@@ -23,6 +23,7 @@ These paths can be modified at `project.yml`.
 
 ## Build, compile and run the unit tests
 There are some basic commands for executing ceedling:
+
 1. Initialize Ceedling executing `ceedling new` from `$PROJECT_PATH/firmware`
    * `rake test:all` runs all tests in the MPLAB-SIM Simulator using the Microchip Debugger (MDB).
    * `rake release` generates the `.hex` output. This is **not working** properly at this moment.
