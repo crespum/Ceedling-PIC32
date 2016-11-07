@@ -5,6 +5,7 @@ This project intends to be a boilerplate for integrating unit testing in a PIC32
 
 ## Prerequisites
 The tests has just been run on Linux (Debian).
+
 1. Install [MPLAB X IDE](http://www.microchip.com/mplab/mplab-x-ide)
 2. Install [XC32 1.42](http://www.microchip.com/mplab/compilers) at `/opt/microchip/xc32/v1.42/`
 3. Install [Harmony v1.09](http://www.microchip.com/mplab/mplab-harmony) at `/opt/microchip/harmony/v1_09/`. Be careful not to use version 2.x which is currently in a beta stage.
