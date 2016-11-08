@@ -1,3 +1,4 @@
+# MPLAB Harmony
 *.d
 *.pre
 *.p1
@@ -11,7 +12,6 @@ html/
 **/nbproject/private/
 **/nbproject/Package-*.bash
 **/nbproject/Makefile-*
-build/
 nbbuild/
 dist/
 nbdist/
@@ -20,5 +20,8 @@ nb-configuration.xml
 funclist
 disassembly/
 *.map
-vendor/
+
+# Ceedling
 firmware/test/simulation/out.txt
+firmware/build/*
+!firmware/build/.gitkeep

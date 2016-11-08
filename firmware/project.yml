@@ -120,7 +120,7 @@
       - -Wl,-Tp#{ENV['MCU']}.ld,-Map=./build/release/release_build.map,--report-mem
 :plugins:
   :load_paths:
-    - vendor/ceedling/plugins
+    - "#{Ceedling.load_path}"
   :enabled:
     - stdout_pretty_tests_report
     - module_generator
