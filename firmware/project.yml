@@ -31,7 +31,6 @@
     - src/**
   :support:
     - test/support
-    - /opt/microchip/harmony/v1_09/framework/peripheral/ports/
   :include:
     - /opt/microchip/xc32/v1.42/pic32mx/include/
     - /opt/microchip/harmony/v1_09/framework/
@@ -47,8 +46,7 @@
     - UNITY_INT_WIDTH=32
     - CMOCK_MEM_INDEX_TYPE=uint32_t
     - CMOCK_MEM_PTR_AS_INT=uint32_t
-    - CMOCK_MEM_ALIGN=1
-    - CMOCK_MEM_SIZE=4096
+    - CMOCK_MEM_SIZE=2056
   :test:
     - *common_defines
     - TEST
@@ -84,7 +82,6 @@
       - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
       - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
       - -Wall
-      - -O1
       #- -Werror  # We can't keep this on during test becuase of a CMock pointer issue
   :test_linker:
     :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
