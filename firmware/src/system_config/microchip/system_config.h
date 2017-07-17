@@ -18,7 +18,7 @@
     definitions for build-time configuration options that are not instantiated
     until used by another MPLAB Harmony module or application.
 
-    Created with MPLAB Harmony Version 1.09
+    Created with MPLAB Harmony Version 1.11
 *******************************************************************************/
 
 // DOM-IGNORE-BEGIN
@@ -74,8 +74,8 @@ extern "C" {
 // *****************************************************************************
 /* Common System Service Configuration Options
 */
-#define SYS_VERSION_STR           "1.09"
-#define SYS_VERSION               10900
+#define SYS_VERSION_STR           "1.11"
+#define SYS_VERSION               11100
 
 // *****************************************************************************
 /* Clock System Service Configuration Options
@@ -94,6 +94,30 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+// *****************************************************************************
+/* I2C Driver Configuration Options
+*/
+#define DRV_I2C_INTERRUPT_MODE                    		false
+#define DRV_I2C_CLIENTS_NUMBER                    		1
+#define DRV_I2C_INSTANCES_NUMBER                  		1
+
+#define DRV_I2C_PERIPHERAL_ID_IDX0                		I2C_ID_1
+#define DRV_I2C_OPERATION_MODE_IDX0               		DRV_I2C_MODE_MASTER
+#define DRV_SCL_PORT_IDX0                               PORT_CHANNEL_A
+#define DRV_SCL_PIN_POSITION_IDX0                       PORTS_BIT_POS_14
+#define DRV_SDA_PORT_IDX0                               PORT_CHANNEL_A
+#define DRV_SDA_PIN_POSITION_IDX0                       PORTS_BIT_POS_15
+#define DRV_I2C_BIT_BANG_IDX0                           false
+#define DRV_I2C_STOP_IN_IDLE_IDX0                       false
+#define DRV_I2C_SMBus_SPECIFICATION_IDX0			    false
+#define DRV_I2C_BAUD_RATE_IDX0                    		50000
+#define DRV_I2C_BRG_CLOCK_IDX0	                  		48000000
+#define DRV_I2C_SLEW_RATE_CONTROL_IDX0      			false
+#define DRV_I2C_MASTER_INT_SRC_IDX0               		INT_SOURCE_I2C_1_MASTER
+#define DRV_I2C_SLAVE_INT_SRC_IDX0                		
+#define DRV_I2C_ERR_MX_INT_SRC_IDX0               		INT_SOURCE_I2C_1_ERROR
+#define DRV_I2C_POWER_STATE_IDX0                  		SYS_MODULE_POWER_RUN_FULL
+
 
 // *****************************************************************************
 // *****************************************************************************

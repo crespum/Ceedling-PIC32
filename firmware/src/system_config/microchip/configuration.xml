@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration version="1.0.9.2">
+<configuration version="1.0.10.0">
+  <DisplayManager>
+    <SystemInitScript/>
+    <SystemStartScript/>
+  </DisplayManager>
   <General>
-    <HarmonyPath path="../../../../../../opt/microchip/harmony/v1_09"/>
+    <HarmonyPath path="../../../../../../opt/microchip/harmony/v1_11"/>
     <Processor name=""/>
     <ForceOptimization flag="true"/>
     <MergeStrategy flag="USER_ALL"/>
@@ -17,12 +21,56 @@
         <Path>Header Files/framework/peripheral</Path>
       </File>
       <File>
+        <Name>driver_common.h</Name>
+        <Path>Header Files/framework/driver</Path>
+      </File>
+      <File>
+        <Name>sys_devcon.c</Name>
+        <Path>Source Files/framework/system/devcon/src</Path>
+      </File>
+      <File>
+        <Name>osal.h</Name>
+        <Path>Header Files/framework/osal</Path>
+      </File>
+      <File>
+        <Name>drv_i2c.c</Name>
+        <Path>Source Files/framework/driver/i2c/src/dynamic</Path>
+      </File>
+      <File>
+        <Name>sys_ports.h</Name>
+        <Path>Header Files/framework/system/ports</Path>
+      </File>
+      <File>
+        <Name>driver.h</Name>
+        <Path>Header Files/framework/driver</Path>
+      </File>
+      <File>
+        <Name>peripheral_common.h</Name>
+        <Path>Header Files/framework/peripheral</Path>
+      </File>
+      <File>
+        <Name>drv_i2c_compatibility.h</Name>
+        <Path>Header Files/framework/driver/i2c</Path>
+      </File>
+      <File>
+        <Name>sys_common.h</Name>
+        <Path>Header Files/framework/system/common</Path>
+      </File>
+      <File>
+        <Name>sys_buffer.h</Name>
+        <Path>Header Files/framework/system/common</Path>
+      </File>
+      <File>
         <Name>sys_clk.h</Name>
         <Path>Header Files/framework/system/clk</Path>
       </File>
       <File>
         <Name>osal_impl_none.h</Name>
         <Path>Header Files/framework/osal/src</Path>
+      </File>
+      <File>
+        <Name>drv_i2c_variant_mapping.h</Name>
+        <Path>Header Files/framework/driver/i2c/src</Path>
       </File>
       <File>
         <Name>sys_clk_mapping.h</Name>
@@ -33,16 +81,12 @@
         <Path>Header Files/framework/osal</Path>
       </File>
       <File>
-        <Name>sys_devcon.c</Name>
-        <Path>Source Files/framework/system/devcon/src</Path>
-      </File>
-      <File>
         <Name>gfx_palette.h</Name>
         <Path>Header Files/framework/gfx</Path>
       </File>
       <File>
-        <Name>osal.h</Name>
-        <Path>Header Files/framework/osal</Path>
+        <Name>drv_i2c_local.h</Name>
+        <Path>Header Files/framework/driver/i2c/src</Path>
       </File>
       <File>
         <Name>sys_devcon.h</Name>
@@ -57,12 +101,16 @@
         <Path>Header Files/framework/system/debug</Path>
       </File>
       <File>
+        <Name>drv_i2c.h</Name>
+        <Path>Header Files/framework/driver/i2c</Path>
+      </File>
+      <File>
         <Name>sys_module.h</Name>
         <Path>Header Files/framework/system/common</Path>
       </File>
       <File>
-        <Name>sys_ports.h</Name>
-        <Path>Header Files/framework/system/ports</Path>
+        <Name>drv_i2c_mapping.h</Name>
+        <Path>Header Files/framework/driver/i2c</Path>
       </File>
       <File>
         <Name>sys_devcon_pic32mx.c</Name>
@@ -75,18 +123,6 @@
       <File>
         <Name>peripheral.h</Name>
         <Path>Header Files/framework/peripheral</Path>
-      </File>
-      <File>
-        <Name>peripheral_common.h</Name>
-        <Path>Header Files/framework/peripheral</Path>
-      </File>
-      <File>
-        <Name>sys_common.h</Name>
-        <Path>Header Files/framework/system/common</Path>
-      </File>
-      <File>
-        <Name>sys_buffer.h</Name>
-        <Path>Header Files/framework/system/common</Path>
       </File>
       <File>
         <Name>sys_queue.h</Name>
@@ -106,7 +142,7 @@
       <Template>
         <Name>system_init.c</Name>
         <Path>Source Files/app/system_config/microchip</Path>
-        <Checksum>C192D17B74FD6B64D8D16670F01B0531</Checksum>
+        <Checksum>015D54DAC199A0611C61E2D833A15446</Checksum>
       </Template>
       <Template>
         <Name>sys_clk_static.h</Name>
@@ -116,12 +152,12 @@
       <Template>
         <Name>system_definitions.h</Name>
         <Path>Header Files/app/system_config/microchip</Path>
-        <Checksum>08B5EB4F7D9B07DBF06AD124A3AC99C1</Checksum>
+        <Checksum>7B9DE20E66A63184093F4A204BFAAE56</Checksum>
       </Template>
       <Template>
         <Name>system_config.h</Name>
         <Path>Header Files/app/system_config/microchip</Path>
-        <Checksum>743214C4298C85FC22BD25CFEEA7DE9A</Checksum>
+        <Checksum>961BAC499EF81A939111C0630A6018C2</Checksum>
       </Template>
       <Template>
         <Name>system_interrupt.c</Name>
@@ -131,7 +167,7 @@
       <Template>
         <Name>system_tasks.c</Name>
         <Path>Source Files/app/system_config/microchip</Path>
-        <Checksum>BE644D0142ACA48D9CA2E6255A02CDBA</Checksum>
+        <Checksum>4CABFC6A19D59EA0E156355CA3FB860C</Checksum>
       </Template>
       <Template>
         <Name>app.h</Name>
@@ -154,15 +190,15 @@
     </Templates>
     <CompilerItems>
       <C32>
-        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/test_ceedling/firmware/src"/>
-        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/test_ceedling/firmware/src/system_config/microchip"/>
-        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/test_ceedling/firmware/src/microchip"/>
-        <Include value="/opt/microchip/harmony/v1_09/framework"/>
-        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/test_ceedling/firmware/src/system_config/microchip/framework"/>
+        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/Ceedling_PIC32/firmware/src"/>
+        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/Ceedling_PIC32/firmware/src/system_config/microchip"/>
+        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/Ceedling_PIC32/firmware/src/microchip"/>
+        <Include value="/opt/microchip/harmony/v1_11/framework"/>
+        <Include value="/home/xabi/Documents/Dev/MPLABXProjects/Ceedling_PIC32/firmware/src/system_config/microchip/framework"/>
       </C32>
     </CompilerItems>
     <Libraries>
-      <Library value="../../../../../../../../opt/microchip/harmony/v1_09/bin/framework/peripheral/PIC32MX250F128B_peripherals.a"/>
+      <Library value="../../../../../../../../opt/microchip/harmony/v1_11/bin/framework/peripheral/PIC32MX250F128B_peripherals.a"/>
     </Libraries>
   </Manifest>
 </configuration>

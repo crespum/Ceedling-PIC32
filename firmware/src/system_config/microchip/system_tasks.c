@@ -75,6 +75,7 @@ void SYS_Tasks ( void )
     SYS_DEVCON_Tasks(sysObj.sysDevcon);
 
     /* Maintain Device Drivers */
+    DRV_I2C_Tasks(sysObj.drvI2C0);
 
     /* Maintain Middleware & Other Libraries */
 

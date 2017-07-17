@@ -18,19 +18,31 @@ typedef struct {
     colors_t colors;
 } NeopixelHandler_t;
 
+/**
+ * Initializes the Neopixel with port information. That information is saved to a hanlder
+ * that will be used for configuring the LED in next calls.
+ * 
+ * @param handler Pointer to a structure that identifies the Neopixel and will be passed to other methods.
+ * @param id Identifier for the device instance to be configured
+ * @param channel Identifier for the Ports channel A, B, C, etc. 
+ * @param bit_position Pin to be used mapped to port.
+ */
 void ws2812b_init(NeopixelHandler_t *handler, PORTS_MODULE_ID id, PORTS_CHANNEL channel, PORTS_BIT_POS bit_position);
 
 /**
  * Gets an hex code and change the color of an LED accordingly. The decoded color is 
- * returned in a colors_t structure.
+ * returned in a colors_t structure inside the handler.
  *
- * @param hex RGB hexadecimal code.
- * @param colors pointer to a color structure that will contain the decoded colors.
+ * @param handler Pointer to a structure that identifies the Neopixel.
+ * @param hex RGB Hexadecimal code.
  *
- * @return true if successful, false otherwise.
+ * @return True if successful, false otherwise.
  */
 bool ws2812b_set_rgb_color(NeopixelHandler_t *handler, int32_t hex);
 
+/**
+ * Definitions of the waiting time between PinSet and PinClear to implement bitbanging.
+ */
 #define WS2812B_T1H_NOP   _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop();
 #define WS2812B_T0H_NOP   _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop(); _nop();
 #define WS2812B_T1L_NOP   _nop();

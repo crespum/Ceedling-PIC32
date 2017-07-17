@@ -1,15 +1,15 @@
 # Ceedling + PIC32 + Harmony boilerplate
 
-This project intends to be a boilerplate for integrating unit testing in a PIC32 environment.
+This project intends to be a boilerplate for integrating unit testing in a PIC32 environment. It contains a sample unit test for a Neopixel. The I2C drivers have also been enabled using Harmony to show how to compile and link them.
 
 
 ## Prerequisites
 The tests has just been run on Linux (Debian).
 
 1. Install [MPLAB X IDE](http://www.microchip.com/mplab/mplab-x-ide)
-2. Install [XC32 1.42](http://www.microchip.com/mplab/compilers) at `/opt/microchip/xc32/v1.42/`
-3. Install [Harmony v1.09](http://www.microchip.com/mplab/mplab-harmony) at `/opt/microchip/harmony/v1_09/`. Be careful not to use version 2.x which is currently in a beta stage.
-4. Open MPLAB, go to *Tools > Plugins Downloads* and install the Harmony Configurator v1.09 **DO NOT INSTALL v2**
+2. Install [XC32 1.43](http://www.microchip.com/mplab/compilers) at `/opt/microchip/xc32/v1.43/`
+3. Install [Harmony v1.11](http://www.microchip.com/mplab/mplab-harmony) at `/opt/microchip/harmony/v1_11/`. Be careful not to use version 2.x which is currently in a beta stage.
+4. Open MPLAB, go to *Tools > Plugins Downloads* and install the Harmony Configurator v1.0.10.0 **DO NOT INSTALL v2**
 5. Install [ceedling](https://github.com/ThrowTheSwitch/ceedling) using `sudo gem install ceedling`
 
 These paths can be modified at `project.yml` and `test/simulation/sim_test_fixture.rb`.
@@ -25,7 +25,7 @@ These paths can be modified at `project.yml` and `test/simulation/sim_test_fixtu
 There are some basic commands for executing ceedling from `$PROJECT_PATH/firmware`:
 
    * `rake test:all` runs all tests in the MPLAB-SIM Simulator using the Microchip Debugger (MDB).
-   * `rake release` generates the `.hex` output. This is **not working** properly at this moment.
+   * `rake release` generates the `.hex` output.
 
 ## Acknowledgements
 

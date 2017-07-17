@@ -55,6 +55,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system/clk/sys_clk.h"
 #include "system/clk/sys_clk_static.h"
 #include "system/devcon/sys_devcon.h"
+#include "driver/i2c/drv_i2c.h"
 #include "system/ports/sys_ports.h"
 
 
@@ -94,6 +95,7 @@ extern "C" {
 typedef struct
 {
     SYS_MODULE_OBJ  sysDevcon;
+    SYS_MODULE_OBJ  drvI2C0;
 
 } SYSTEM_OBJECTS;
 

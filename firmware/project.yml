@@ -29,11 +29,14 @@
     - -:test/support
   :source:
     - src/**
+    - /opt/microchip/harmony/v1_11/framework/system/devcon/src/sys_devcon.c
+    - /opt/microchip/harmony/v1_11/framework/system/devcon/src/sys_devcon_pic32mx.c
+    - /opt/microchip/harmony/v1_11/framework/driver/i2c/src/dynamic/drv_i2c.c
   :support:
     - test/support
   :include:
-    - /opt/microchip/xc32/v1.42/pic32mx/include/
-    - /opt/microchip/harmony/v1_09/framework/
+    - /opt/microchip/xc32/v1.43/pic32mx/include/
+    - /opt/microchip/harmony/v1_11/framework/
 
 :defines:
   # in order to add common defines:
@@ -43,12 +46,12 @@
     - __PIC32MX__
     - __32MX250F128B__
     - __LANGUAGE_C__
+  :test:
+    - *common_defines
     - UNITY_INT_WIDTH=32
     - CMOCK_MEM_INDEX_TYPE=uint32_t
     - CMOCK_MEM_PTR_AS_INT=uint32_t
     - CMOCK_MEM_SIZE=2056
-  :test:
-    - *common_defines
     - TEST
   :test_preprocess:
     - *common_defines
@@ -72,7 +75,7 @@
 
 :tools:
   :test_compiler:
-    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - -x c
@@ -84,7 +87,7 @@
       - -Wall
       #- -Werror  # We can't keep this on during test becuase of a CMock pointer issue
   :test_linker:
-    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
@@ -98,25 +101,28 @@
       - test/simulation/sim_test_fixture.rb
 
   :release_compiler:
-    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - -x c
-      - -c
+      - -g -c
       - "${1}"
       - -o "${2}"
       - -I"$": COLLECTION_PATHS_SOURCE_INCLUDE_VENDOR
       - -I"$": COLLECTION_PATHS_RELEASE_TOOLCHAIN_INCLUDE
       - -D$: COLLECTION_DEFINES_RELEASE_AND_VENDOR
+      - -legacy-lib
       - -Wall
-      - -Werror
+      #- -Werror
   :release_linker:
-    :executable: /opt/microchip/xc32/v1.42/bin/xc32-gcc
+    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
       - -o "./build/test/release_build.hex"      
-      - -Wl,-Tp#{ENV['MCU']}.ld,-Map=./build/release/release_build.map,--report-mem
+      - /opt/microchip/harmony/v1_11/bin/framework/peripheral/PIC#{ENV['MCU']}_peripherals.a
+      - -Wl,-Map=./build/release/release_build.map,--report-mem
+      - -legacy-libc
 
 :plugins:
   :load_paths:
