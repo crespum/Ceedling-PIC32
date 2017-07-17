@@ -13,7 +13,7 @@
   :release_build: TRUE
 
 :release_build:
- :output: release_build.hex
+ :output: release_build.elf
  :use_assembly: FALSE
 
 :environment:
@@ -21,7 +21,7 @@
   - :freq: 80000000UL
 
 :extension:
-  :executable: .hex
+  :executable: .elf
 
 :paths:
   :test:
@@ -91,7 +91,7 @@
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
-      - -o "./build/test/test_build.hex"
+      - -o "./build/artifacts/test/test_build.elf"
       - -Wl,-Tp#{ENV['MCU']}.ld,-Map=./build/release/test_build.map
   :test_fixture:
     :executable: ruby
@@ -119,9 +119,9 @@
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
-      - -o "./build/test/release_build.hex"      
+      - -o "./build/artifacts/release/release_build.elf"      
       - /opt/microchip/harmony/v1_11/bin/framework/peripheral/PIC#{ENV['MCU']}_peripherals.a
-      - -Wl,-Map=./build/release/release_build.map,--report-mem
+      - -Wl,-Map=./build/artifacts/release/release_build.map,--report-mem
       - -legacy-libc
 
 :plugins:
