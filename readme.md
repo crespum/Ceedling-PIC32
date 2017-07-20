@@ -25,7 +25,9 @@ These paths can be modified at `project.yml` and `test/simulation/sim_test_fixtu
 There are some basic commands for executing ceedling from `$PROJECT_PATH/firmware`:
 
    * `rake test:all` runs all tests in the MPLAB-SIM Simulator using the Microchip Debugger (MDB).
-   * `rake release` generates the `.hex` output.
+   * `rake release` generates the `.elf` output.
+   * `rake convert` converts the `.elf` intto a `.hex` file.
+   * `rake program` uploades the `.hex` to the target hardware using a PICKit 3.
 
 ## Acknowledgements
 

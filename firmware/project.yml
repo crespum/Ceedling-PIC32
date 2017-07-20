@@ -13,12 +13,13 @@
   :release_build: TRUE
 
 :release_build:
- :output: release_build.elf
+ :output: release_build
  :use_assembly: FALSE
 
 :environment:
   - :mcu:  32MX250F128B
   - :freq: 80000000UL
+  - :bin2hex: /opt/microchip/xc32/v1.43/bin/xc32-bin2hex
 
 :extension:
   :executable: .elf
@@ -80,8 +81,8 @@
       - -mprocessor=#{ENV['MCU']}
       - -x c
       - -c
-      - "${1}"
-      - -o "${2}"
+      - ${1}
+      - -o ${2}
       - -D$: COLLECTION_DEFINES_TEST_AND_VENDOR
       - -I"$": COLLECTION_PATHS_TEST_SUPPORT_SOURCE_INCLUDE_VENDOR
       - -Wall
@@ -91,8 +92,8 @@
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
-      - -o "./build/artifacts/test/test_build.elf"
-      - -Wl,-Tp#{ENV['MCU']}.ld,-Map=./build/release/test_build.map
+      - -o ${2}.elf
+      - -Wl,-Tp#{ENV['MCU']}.ld,-Map=${3}
   :test_fixture:
     :executable: ruby
     :name: "Microchip simulator test fixture"
@@ -119,9 +120,9 @@
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
-      - -o "./build/artifacts/release/release_build.elf"      
+      - -o ${2}.elf
       - /opt/microchip/harmony/v1_11/bin/framework/peripheral/PIC#{ENV['MCU']}_peripherals.a
-      - -Wl,-Map=./build/artifacts/release/release_build.map,--report-mem
+      - -Wl,-Map=${3}
       - -legacy-libc
 
 :plugins:
