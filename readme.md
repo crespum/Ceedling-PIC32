@@ -6,7 +6,7 @@ This project intends to be a boilerplate for integrating unit testing in a PIC32
 ## Prerequisites
 The tests has just been run on Linux (Debian).
 
-1. Install [MPLAB X IDE](http://www.microchip.com/mplab/mplab-x-ide)
+1. Install [MPLAB X IDE and IPE v3.61](http://www.microchip.com/mplab/mplab-x-ide)
 2. Install [XC32 1.43](http://www.microchip.com/mplab/compilers) at `/opt/microchip/xc32/v1.43/`
 3. Install [Harmony v1.11](http://www.microchip.com/mplab/mplab-harmony) at `/opt/microchip/harmony/v1_11/`. Be careful not to use version 2.x which is currently in a beta stage.
 4. Open MPLAB, go to *Tools > Plugins Downloads* and install the Harmony Configurator v1.0.10.0 **DO NOT INSTALL v2**
@@ -14,14 +14,22 @@ The tests has just been run on Linux (Debian).
 
 These paths can be modified at `project.yml` and `test/simulation/sim_test_fixture.rb`.
 
-## Build and compile the project
+## Build and program the firmware using MPLAB
 1. Open MPLAB
 2. Click *File > Open Project* and go to the *firmware* folder and select the folder test_ceedling.X
 3. Right click on the project name (left panel) and click *Set as Main Project*
 4. Now we need to generate the Harmony related files. Go to *Tools > Embedded > MPLAB Harmony Configurator* and once inside click the button in the top to generate the code.
 5. Now click *Clean and build*
+6. Finally, to upload the code click *Make and Program Device Main Project*
 
-## Build, compile and run the unit tests
+## Build and program the firmware using Ceedling
+Please note that MPLAB X IPE is required to program the target.
+
+   * `rake release` generates the `.elf` output.
+   * `rake convert` converts the `.elf` intto a `.hex` file.
+   * `rake program` uploades the `.hex` to the target hardware using a PICKit 3.
+
+## Build and run the unit tests
 There are some basic commands for executing ceedling from `$PROJECT_PATH/firmware`:
 
    * `rake test:all` runs all tests in the MPLAB-SIM Simulator using the Microchip Debugger (MDB).
