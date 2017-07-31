@@ -15,7 +15,7 @@ end
 desc "Program the PIC"
 task :program => :convert do
   hex_file = "build/release/#{RELEASE_BUILD_OUTPUT}.hex"
-  cmd = "/opt/microchip/mplabx/v3.61/mplab_ipe/ipecmd.sh -P#{ENV['MCU']} -TPPK3 -M -F#{hex_file}"
+  cmd = "/opt/microchip/mplabx/v3.61/mplab_ipe/ipecmd.sh -P#{ENV['MCU']} -TPPK3 -M -OL -F#{hex_file}"
   puts "Programming #{RELEASE_BUILD_OUTPUT}.hex..."
   puts cmd
   sh cmd
