@@ -12,7 +12,7 @@ The tests has just been run on Linux (Debian).
 4. Open MPLAB, go to *Tools > Plugins Downloads* and install the Harmony Configurator v1.0.10.0 **DO NOT INSTALL v2**
 5. Install [ceedling](https://github.com/ThrowTheSwitch/ceedling) using `sudo gem install ceedling`
 
-These paths can be modified at `project.yml` and `test/simulation/sim_test_fixture.rb`.
+These paths can be modified at the beginning of `rakefile.rb`.
 
 ## Build and program the firmware using MPLAB
 1. Open MPLAB

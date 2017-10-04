@@ -19,7 +19,6 @@
 :environment:
   - :mcu:  32MX250F128B
   - :freq: 80000000UL
-  - :bin2hex: /opt/microchip/xc32/v1.43/bin/xc32-bin2hex
 
 :extension:
   :executable: .elf
@@ -30,14 +29,14 @@
     - -:test/support
   :source:
     - src/**
-    - /opt/microchip/harmony/v1_11/framework/system/devcon/src/sys_devcon.c
-    - /opt/microchip/harmony/v1_11/framework/system/devcon/src/sys_devcon_pic32mx.c
-    - /opt/microchip/harmony/v1_11/framework/driver/i2c/src/dynamic/drv_i2c.c
+    - "#{ENV['HARMONY_ROOT']}framework/system/devcon/src/sys_devcon.c"
+    - "#{ENV['HARMONY_ROOT']}framework/system/devcon/src/sys_devcon_pic32mx.c"
+    - "#{ENV['HARMONY_ROOT']}framework/driver/i2c/src/dynamic/drv_i2c.c"
   :support:
     - test/support
   :include:
-    - /opt/microchip/xc32/v1.43/pic32mx/include/
-    - /opt/microchip/harmony/v1_11/framework/
+    - "#{ENV['COMPILER_ROOT']}pic32mx/include/"
+    - "#{ENV['HARMONY_ROOT']}framework/"
 
 :defines:
   # in order to add common defines:
@@ -76,7 +75,7 @@
 
 :tools:
   :test_compiler:
-    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
+    :executable: "#{ENV['COMPILER_ROOT']}bin/xc32-gcc"
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - -x c
@@ -88,7 +87,7 @@
       - -Wall
       #- -Werror  # We can't keep this on during test becuase of a CMock pointer issue
   :test_linker:
-    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
+    :executable: "#{ENV['COMPILER_ROOT']}bin/xc32-gcc"
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
@@ -102,7 +101,7 @@
       - test/simulation/sim_test_fixture.rb
 
   :release_compiler:
-    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
+    :executable: "#{ENV['COMPILER_ROOT']}bin/xc32-gcc"
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - -x c
@@ -116,12 +115,12 @@
       - -Wall
       #- -Werror
   :release_linker:
-    :executable: /opt/microchip/xc32/v1.43/bin/xc32-gcc
+    :executable: "#{ENV['COMPILER_ROOT']}bin/xc32-gcc"
     :arguments:
       - -mprocessor=#{ENV['MCU']}
       - ${1}
       - -o ${2}.elf
-      - /opt/microchip/harmony/v1_11/bin/framework/peripheral/PIC#{ENV['MCU']}_peripherals.a
+      - "#{ENV['HARMONY_ROOT']}bin/framework/peripheral/PIC#{ENV['MCU']}_peripherals.a"
       - -Wl,-Map=${3}
       - -legacy-libc
 
